@@ -1,0 +1,12 @@
+#table-card {
+    margin-bottom:20px;
+}
+
+.fancyHead {
+    background-color: salmon;
+    color:white;
+}
+
+body{
+    background-image: url("../Images/snowflakes.gif");
+}
