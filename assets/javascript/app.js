@@ -1,12 +1,14 @@
 $(document).ready(function(){
+console.log("javascript linked")
 
-    console.log("javascript linked")
-
+//global variables
     var database = firebase.database();
     var currentTime = moment().format("HH:mm:ss")
     var timerInt
+
     $("#time-display").text(currentTime)
     
+//functions to dynamically display current time
     function runTime() {
         clearInterval(timerInt);
         timerInt = setInterval(displayTime, 1000);
@@ -18,6 +20,7 @@ $(document).ready(function(){
     }
 
     runTime();
+    
 
 //on click event for submit button
     $("#sub-button").on("click", function(event){
@@ -37,11 +40,12 @@ $(document).ready(function(){
                 Frequency: frequency
             })
 
-        $("#table-body").empty()
-
+        
         //pull the values back into the table
+        $("#table-body").empty()
+        
         database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot){
-        //creates a new row with data whenever there is a new child in the firebase (ie submitted)
+            //creates a new row with data whenever there is a new child in the firebase (ie submitted)
             var newRow = $("<tr>")
 
             var nameData = $("<td>")
@@ -75,37 +79,12 @@ $(document).ready(function(){
             newRow.append(freqData)
             newRow.append(naData)
             newRow.append(maData)
-        
+
         //appending the new row to the table body
             $("#table-body").append(newRow)
 
         })//child added close
 
     })//sub button close
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 })//document ready close
